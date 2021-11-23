@@ -64,3 +64,21 @@ while (True):
 
 
 
+(score, diff) = compare_ssim(imageA0, imageB0, full=True)
+
+diff = (diff*255).astype("uint8")
+
+#print(f"Similarity: {score:.5f}")
+
+a = round(score,4)
+print("유사도에 따른 점수입니다")
+if (a > 0.9650) :
+    print('5점 만점에 5점입니다')
+elif (a > 0.9500) :
+    print('5점 만점에 4점입니다')
+elif (a > 0.9350) :
+    print('5점 만점에 3점입니다')
+elif (a > 0.9200) :
+    print('5점 만점에 2점입니다')
+elif (a > 0.9050) :
+   print('5점 만점에 1점입니다')
