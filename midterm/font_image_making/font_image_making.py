@@ -67,12 +67,12 @@ while (True):
 
 
 #이미지 경로
-imageA = r"C:/Users/user/OPimage/segoesc_original.png"
-imageB = r"C:/Users/user/OPimage/segoesc_mydrawing.png"
+imageA = r"C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/segoesc_original.png"
+imageB = r"C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/segoesc_mydrawing.png"
 
 #이미지 읽어오기
-imageB_imread = cv2.imread("C:/Users/user/OPimage/segoesc_mydrawing.png")
-imageA_imread = cv2.imread("C:/Users/user/OPimage/segoesc_original.png")
+imageB_imread = cv2.imread("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/segoesc_mydrawing.png")
+imageA_imread = cv2.imread("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/segoesc_original.png")
 
 # 결과 이미지 생성
 result_image = imageB_imread.copy()
@@ -81,7 +81,7 @@ result_image = imageB_imread.copy()
 gray_imageA = cv2.imread(imageA, cv2.IMREAD_GRAYSCALE)
 gray_imageB = cv2.imread(imageB, cv2.IMREAD_GRAYSCALE)
 
-(score, diff) = compare_ssim(imageA0, imageB0, full=True)
+(score, diff) = compare_ssim(gray_imageA, gray_imageB, full=True)
 
 diff = (diff*255).astype("uint8")
 
