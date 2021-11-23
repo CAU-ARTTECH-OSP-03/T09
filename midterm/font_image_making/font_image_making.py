@@ -1,6 +1,10 @@
 from PIL import Image, ImageDraw, ImageFont
 import textwrap
 import cv2
+from skimage.metrics import structural_similarity as compare_ssim
+import numpy as np
+from matplotlib import pyplot as plt
+import time
 
 def make_font_image(font_name) :
     im = Image.open("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/whitewithgrid.jpg")
@@ -62,7 +66,20 @@ while (True):
         break
 
 
+#이미지 경로
+imageA = r"C:/Users/user/OPimage/segoesc_original.png"
+imageB = r"C:/Users/user/OPimage/segoesc_mydrawing.png"
 
+#이미지 읽어오기
+imageB_imread = cv2.imread("C:/Users/user/OPimage/segoesc_mydrawing.png")
+imageA_imread = cv2.imread("C:/Users/user/OPimage/segoesc_original.png")
+
+# 결과 이미지 생성
+result_image = imageB_imread.copy()
+
+#이미지 grayscale로 변경
+gray_imageA = cv2.imread(imageA, cv2.IMREAD_GRAYSCALE)
+gray_imageB = cv2.imread(imageB, cv2.IMREAD_GRAYSCALE)
 
 (score, diff) = compare_ssim(imageA0, imageB0, full=True)
 
@@ -82,3 +99,35 @@ elif (a > 0.9200) :
     print('5점 만점에 2점입니다')
 elif (a > 0.9050) :
    print('5점 만점에 1점입니다')
+
+while (True): #피드백 난도를 결정하는 부분
+    char_level = input("어느 정도로 정확한 피드백을 원하나요? \n 상(매우 정교함), 중(보통), 하(형태만 확인) 중 선택해주세요.")
+
+    if char_level =="상":
+        level = 70
+        break
+
+    elif char_level =="중":
+        level = 200
+        break
+
+    elif char_level == "하":
+        level = 250
+        break
+
+    else:
+        print("다시 입력해 주세요")
+
+print("이미지의 빨간색은 폰트와 어긋난 부분, 검은색은 폰트와 동일한 부분입니다.")
+time.sleep(1)  # 앞의 문구 표시를 위해 쉼
+print("빨간색 부분에 유의하면서 다시 한번 써보세요.")
+time.sleep(2)  # 앞의 문구 표시를 위해 쉼
+
+for x in range(0, 860):  #이미지의 가로 길이
+    for y in range(0,640): #이미지의 세로 길이
+        if gray_imageA[y,x] > gray_imageB[y,x]: #글씨 가이드라인 제외하기
+            if gray_imageA[y, x] - (gray_imageB[y, x]) > level: #사용자가 쓴 글씨가 폰트를 벗어났을 때  #level을 통해 피드백 난도 조절
+                result_image[y, x] = (0, 0, 255)  #픽셀을 빨간색으로 변경
+
+cv2.imshow("Compare", cv2.resize(result_image, (860, 640)))
+cv2.waitKey(0)
