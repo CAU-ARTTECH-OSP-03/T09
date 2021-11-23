@@ -7,6 +7,6 @@ imageB = cv2.imread("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_maki
 imageD = cv2.imread("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/bahnschrift_original.png")
 imageE = cv2.imread("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/fontimage/bahnschrift_,mydrawing.png")
 imageC = imageA.copy()
-imageF = imageD.copy()
+
 print(imageD.shape)
 print(imageE.shape)
