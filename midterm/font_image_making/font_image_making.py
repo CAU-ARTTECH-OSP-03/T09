@@ -1,9 +1,6 @@
 from PIL import Image, ImageDraw, ImageFont
-import textwrap
 import cv2
 from skimage.metrics import structural_similarity as compare_ssim
-import numpy as np
-from matplotlib import pyplot as plt
 import time
 
 def make_font_image(font_name) :
