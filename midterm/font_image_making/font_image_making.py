@@ -2,7 +2,6 @@ from PIL import Image, ImageDraw, ImageFont
 import cv2
 from skimage.metrics import structural_similarity as compare_ssim
 import time
-
 def make_font_image(font_name) :
     im = Image.open("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/whitewithgrid.jpg")
 
@@ -80,12 +79,13 @@ gray_imageB = cv2.imread(imageB, cv2.IMREAD_GRAYSCALE)
 
 (score, diff) = compare_ssim(gray_imageA, gray_imageB, full=True)
 
+# 두 이미지 사이의 유사도 구하기
 diff = (diff*255).astype("uint8")
-
-#print(f"Similarity: {score:.5f}")
-
 a = round(score,4)
+
 print("유사도에 따른 점수입니다")
+
+# 사용자에게 점수 부여
 if (a > 0.9650) :
     print('5점 만점에 5점입니다')
 elif (a > 0.9500) :
@@ -126,5 +126,5 @@ for x in range(0, 860):  #이미지의 가로 길이
             if gray_imageA[y, x] - (gray_imageB[y, x]) > level: #사용자가 쓴 글씨가 폰트를 벗어났을 때  #level을 통해 피드백 난도 조절
                 result_image[y, x] = (0, 0, 255)  #픽셀을 빨간색으로 변경
 
-cv2.imshow("Compare", cv2.resize(result_image, (860, 640)))
-cv2.waitKey(0)
+cv2.imshow("Compare", cv2.resize(result_image, (860, 640))) #결과 값으로 피드백 이미지
+cv2.waitKey(0)  
