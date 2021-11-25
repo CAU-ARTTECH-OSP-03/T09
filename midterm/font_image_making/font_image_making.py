@@ -3,7 +3,7 @@ import cv2
 from skimage.metrics import structural_similarity as compare_ssim
 import time
 def make_font_image(font_name) :
-    im = Image.open("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/whitewithgrid.jpg")
+    im = Image.open("C:/Users/TOP/Desktop/opensource/T09/midterm/font_image_making/whitewithgrid.jpg")   #배경이미지불러오기
 
     if font_name.upper() == font_name.lower() :  #폰트이름이전체한글이고, 한글폰트일경우
         draw = ImageDraw.Draw(im)
@@ -50,7 +50,7 @@ def make_font_image(font_name) :
         draw.text(((860-w3)/2.0, 365), row3,font=ImageFont.truetype("C:/Windows/Fonts/" + font_name + ".ttf", 80), fill=(224,224,224))
         draw.text(((860-w4)/2.0, 485), row4,font=ImageFont.truetype("C:/Windows/Fonts/" + font_name + ".ttf", 80), fill=(224,224,224))
         im.save("fontimage_"+font_name+".png")
-
+#원하는 폰트 고르기
 while (True):
     A = input('어떠한 폰트를 원하시나요? 1. bahnschrift 2. segoesc')
     if (A == "1") :
