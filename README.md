@@ -19,7 +19,9 @@ textwrap : Python Software Foundation ( https://pypi.org/project/textwrap3/ )
 ![license](https://user-images.githubusercontent.com/88334213/146419351-41d48d50-a106-4e73-9e15-0432d37e6dc0.jpg)
 + ) HPND-GPL : Possible
 
+## MIT License 
 Copyright (c) <2021> <Parkleekyung>
+
 Permission is hereby granted, free of charge, to any person
 obtaining a copy of this software and associated documentation
 files (the "Software"), to deal in the Software without
