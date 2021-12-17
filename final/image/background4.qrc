@@ -1,0 +1,5 @@
+<RCC>
+  <qresource prefix="newPrefix">
+    <file>image.jfif</file>
+  </qresource>
+</RCC>

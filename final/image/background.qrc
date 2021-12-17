@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="background">
+    <file>background.qrc</file>
+    <file>../image.jfif</file>
+    <file>background.py</file>
+  </qresource>
+</RCC>
