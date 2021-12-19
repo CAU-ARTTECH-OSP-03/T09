@@ -54,7 +54,7 @@ background:rgba(254, 255, 185,150)</string>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>230</y>
+     <y>250</y>
      <width>261</width>
      <height>71</height>
     </rect>
@@ -71,13 +71,14 @@ background:rgba(254, 255, 185,150)</string>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>320</y>
+     <y>360</y>
      <width>261</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
-    <string notr="true">font: 24pt &quot;a엄마의편지M&quot;;
+    <string notr="true">font: 24pt &quot;Arial&quot;;
+
 background:rgba(254, 255, 185,150);</string>
    </property>
    <property name="text">
@@ -88,30 +89,13 @@ background:rgba(254, 255, 185,150);</string>
    <property name="geometry">
     <rect>
      <x>240</x>
-     <y>410</y>
+     <y>470</y>
      <width>261</width>
      <height>71</height>
     </rect>
    </property>
    <property name="styleSheet">
     <string notr="true">font: 20pt &quot;Century Gothic&quot;;
-background:rgba(254, 255, 185,150)</string>
-   </property>
-   <property name="text">
-    <string>a b c d e f g</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="b5">
-   <property name="geometry">
-    <rect>
-     <x>240</x>
-     <y>500</y>
-     <width>261</width>
-     <height>71</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 24pt &quot;-소녀B&quot;;
 background:rgba(254, 255, 185,150)</string>
    </property>
    <property name="text">
