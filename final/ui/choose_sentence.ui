@@ -20,7 +20,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>180</y>
+     <y>230</y>
      <width>181</width>
      <height>61</height>
     </rect>
@@ -37,7 +37,7 @@ background:rgba(254, 255, 185,150)</string>
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>290</y>
+     <y>340</y>
      <width>181</width>
      <height>61</height>
     </rect>
@@ -48,23 +48,6 @@ background:rgba(254, 255, 185,150)</string>
    </property>
    <property name="text">
     <string>직접 작성하기</string>
-   </property>
-  </widget>
-  <widget class="QPushButton" name="sound_recog">
-   <property name="geometry">
-    <rect>
-     <x>290</x>
-     <y>400</y>
-     <width>181</width>
-     <height>61</height>
-    </rect>
-   </property>
-   <property name="styleSheet">
-    <string notr="true">font: 20pt &quot;-다정&quot;;
-background:rgba(254, 255, 185,150)</string>
-   </property>
-   <property name="text">
-    <string>음성인식</string>
    </property>
   </widget>
   <widget class="QPushButton" name="home">
