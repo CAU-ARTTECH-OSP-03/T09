@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:url(:/newPrefix/image.jfif)</string>
+  </property>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>40</y>
+     <width>101</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;-다정&quot;;
+background:rgba(254, 255, 185,0)</string>
+   </property>
+   <property name="text">
+    <string>피드백 레벨</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="high">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>90</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;-다정&quot;;
+background:rgba(254, 255, 185,150)</string>
+   </property>
+   <property name="text">
+    <string>상</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="middle">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>150</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;-다정&quot;;
+background:rgba(254, 255, 185,150)</string>
+   </property>
+   <property name="text">
+    <string>중</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="low">
+   <property name="geometry">
+    <rect>
+     <x>160</x>
+     <y>210</y>
+     <width>81</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 16pt &quot;-다정&quot;;
+background:rgba(254, 255, 185,150)</string>
+   </property>
+   <property name="text">
+    <string>하</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="background7.qrc"/>
+ </resources>
+ <connections/>
+</ui>

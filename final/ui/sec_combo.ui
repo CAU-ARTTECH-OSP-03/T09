@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Dialog</class>
+ <widget class="QDialog" name="Dialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background:url(:/newPrefix/image/image.jfif)</string>
+  </property>
+  <widget class="QRadioButton" name="alpha">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>100</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(254, 255, 185,150);
+font: 16pt &quot;-다정&quot;;</string>
+   </property>
+   <property name="text">
+    <string>알파벳</string>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="text">
+   <property name="geometry">
+    <rect>
+     <x>150</x>
+     <y>160</y>
+     <width>111</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:rgba(254, 255, 185,150);
+font: 16pt &quot;-다정&quot;;</string>
+   </property>
+   <property name="text">
+    <string>문장</string>
+   </property>
+  </widget>
+ </widget>
+ <resources>
+  <include location="background9.qrc"/>
+ </resources>
+ <connections/>
+</ui>
