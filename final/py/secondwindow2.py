@@ -2,14 +2,9 @@ import sys
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from PyQt5 import QtCore
-from choose_level_bahnschrift import choose_level_bahnschrift
-from choose_level_segoesc import choose_level_segoesc
-from choose_level_arial import choose_level_arial
-from choose_level_centurygothic import choose_level_centurygothic
-from choose_level_girl import choose_level_girl
-from choose_level_boopee import choose_level_boopee
+
 form_secondwindow = uic.loadUiType("choose_font.ui")[0]
-class secondwindow(QDialog,form_secondwindow):
+class secondwindow2(QDialog,form_secondwindow):
     def __init__(self):
         super().__init__()
         self.initUI()
@@ -29,27 +24,31 @@ class secondwindow(QDialog,form_secondwindow):
         w = MyWindow2()
         w.show()
         w.exec_()
-
     def chooselevel_b1(self):
         self.close()
+        from choose_level_bahnschrift import choose_level_bahnschrift
         self.choose_level = choose_level_bahnschrift()
         self.choose_level.exec()
         self.show()
     def chooselevel_b2(self):
         self.close()
+        from choose_level_segoesc import choose_level_segoesc
         self.choose_level = choose_level_segoesc()
         self.choose_level.exec()
         self.show()
     def chooselevel_b3(self):
         self.close()
+        from choose_level_arial import choose_level_arial
         self.choose_level = choose_level_arial()
         self.choose_level.exec()
         self.show()
     def chooselevel_b4(self):
         self.close()
+        from choose_level_centurygothic import choose_level_centurygothic
         self.choose_level = choose_level_centurygothic()
         self.choose_level.exec()
         self.show()
+
 
 
 

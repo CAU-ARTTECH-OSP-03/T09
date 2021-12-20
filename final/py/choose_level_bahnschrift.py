@@ -16,7 +16,7 @@ from choose_level_centurygothic import choose_level_centurygothic
 from choose_level_segoesc import choose_level_segoesc
 from choose_level_arial import choose_level_arial
 import secondwindow
-from drawing_pad import CWidget, CView
+#from drawing_pad import CWidget, CView
 import cv2
 #from secondwindow import secondwindow
 #from ui import MyWindow
@@ -40,6 +40,10 @@ global two_two
 global three_three
 global feedback_image_sentence_connect
 global sentence_one
+global a
+global ban_best_image_connect
+ban_best_image_connect = ""
+a = ""
 sentence_one = ""
 feedback_image_sentence_connect = ""
 one_one = ""
@@ -61,8 +65,8 @@ import sys
 k = sys.maxsize
 def sentence_feedback(char_level) :
     # 이미지 경로
-    imageA = cv2.imread(compare_file_name_connect)
-    imageB = cv2.imread(feedback_image_sentence_connect)
+    #imageA = r""+compare_file_name_connect+""
+    #imageB = r""+feedback_image_sentence_connect+""
 
     # 이미지 읽어오기
     imageA_imread = cv2.imread(compare_file_name_connect)
@@ -72,30 +76,37 @@ def sentence_feedback(char_level) :
     result_image = imageB_imread.copy()
 
     # 이미지 grayscale로 변경
-    gray_imageA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
-    gray_imageB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
+    gray_imageA = cv2.cvtColor(imageA_imread, cv2.COLOR_BGR2GRAY)
+    gray_imageB = cv2.cvtColor(imageB_imread, cv2.COLOR_BGR2GRAY)
 
     (score, diff) = compare_ssim(gray_imageA, gray_imageB, full=True)
     diff = (diff * 255).astype("uint8")
-
+    global a
+    #print(f"SIMILARITY : {score:.5f}")
     a = round(score, 4)
     global feedback_score
+
     # print("유사도에 따른 점수입니다")
-    if (a > 0.9650):
+    if (a > 0.7000):
         feedback_score = 5
         # print('5점 만점에 5점입니다')
-    elif (a > 0.9500):
+    elif (a > 0.6700):
         feedback_score = 4
         # print('5점 만점에 4점입니다')
-    elif (a > 0.9350):
+    elif (a > 0.6500):
         feedback_score = 3
         # print('5점 만점에 3점입니다')
-    elif (a > 0.9200):
+    elif (a > 0.6300):
         feedback_score = 2
         # print('5점 만점에 2점입니다')
     else:
         feedback_score = 1
         # print('5점 만점에 1점입니다')
+    graph_file = "C:/Users/TOP/Desktop/opensource/" + "bahnschrift" + "_" + "alphabet" + "similarity_graph.txt"
+    # a_ = open(graph_file, 'a+')
+    # a_.write(str(a))
+    # a_.write("\n")
+    # a_.close()
 
     #time.sleep(2)  # 다음 문구 표시를 위해 쉼
 
@@ -173,25 +184,25 @@ def alphabet_feedback(char_level) :
     result_image = imageB_imread.copy()
 
     # 이미지 grayscale로 변경
-    gray_imageA = cv2.cvtColor(imageA, cv2.COLOR_BGR2GRAY)
-    gray_imageB = cv2.cvtColor(imageB, cv2.COLOR_BGR2GRAY)
+    gray_imageA = cv2.cvtColor(imageA_imread, cv2.COLOR_BGR2GRAY)
+    gray_imageB = cv2.cvtColor(imageB_imread, cv2.COLOR_BGR2GRAY)
 
     (score, diff) = compare_ssim(gray_imageA, gray_imageB, full=True)
     diff = (diff * 255).astype("uint8")
-
+    global a
     a = round(score, 4)
     global feedback_score
     #print("유사도에 따른 점수입니다")
-    if (a > 0.9650):
+    if (a > 0.7000):
         feedback_score = 5
         #print('5점 만점에 5점입니다')
-    elif (a > 0.9500):
+    elif (a > 0.6700):
         feedback_score = 4
         #print('5점 만점에 4점입니다')
-    elif (a > 0.9350):
+    elif (a > 0.6500):
         feedback_score = 3
         #print('5점 만점에 3점입니다')
-    elif (a > 0.9200):
+    elif (a > 0.6300):
         feedback_score = 2
         #print('5점 만점에 2점입니다')
     else:
@@ -636,7 +647,7 @@ def make_font_image_alphabet_compare(font_name):
         row3 = 'o  p  q  r  s  t  u'
         row4 = 'v  w  x  y  z'
         w0, h0 = draw.textsize(row0, font=myfont0)
-        w1, h1 = draw.textsize(textwrap.fill(write, 20), font=myfont1)
+        w1, h1 = draw.textsize(row1, font=myfont1)
         w2, h2 = draw.textsize(row2, font=myfont1)
         w3, h3 = draw.textsize(row3, font=myfont1)
         w4, h4 = draw.textsize(row4, font=myfont1)
@@ -840,12 +851,20 @@ class choose_level_bahnschrift(QDialog,form_choose_level):
         self.alphabet.clicked.connect(self.choose_alphabet)
         self.sentence.clicked.connect(self.choose_sentence)
 
+        self.home.clicked.connect(self.backhome)
+
+    def backhome(self):
+        self.close()
+        from ui2 import MyWindow2
+        w = MyWindow2()
+        w.show()
+        w.exec_()
     def choose_alphabet(self):
         global type
         type = "alphabet"
         self.close()
-        make_font_image_alphabet_compare("GOTHIC")
-        make_font_image_alphabet("GOTHIC")
+        make_font_image_alphabet_compare("bahnschrift")
+        make_font_image_alphabet("bahnschrift")
         w = CWidget()
         w.show()
         w.exec_()
@@ -857,6 +876,18 @@ class choose_level_bahnschrift(QDialog,form_choose_level):
         w = choose_sentence()
         w.show()
         w.exec_()
+import random
+def random_text():
+    list_text = ["No pain, No gain.", "Time is gold.", "From zero to hero.", "Desperate triumphs over luck",
+                    "One day or day one. It's your choice.", "Believe you can and you're halfway there.",
+                     "All we have is now.", "Don't let yesterday take up too much of today.",
+                     "Things end, people change, And life goes on.",
+                     "You get what you work for, not what you wish for.",
+                     "Although world is full of suffering, It is full also of overcoming of it.",
+                     "You can do it!", "All we have is now."]
+
+    return list_text[random.randint(1, len(list_text))]
+
 
 form_choose_sentence = uic.loadUiType("choose_sentence.ui")[0]
 class choose_sentence(QDialog,form_choose_sentence):
@@ -869,10 +900,52 @@ class choose_sentence(QDialog,form_choose_sentence):
     def initUI(self):
         self.setupUi(self)
         self.own_write.clicked.connect(self.draw_own_write_image)
+        self.famous.clicked.connect(self.famous_saying_text)
 
+        self.home.clicked.connect(self.backhome)
+
+
+    def backhome(self):
+        self.close()
+        from ui2 import MyWindow2
+        w = MyWindow2()
+        w.show()
+        w.exec_()
     def draw_own_write_image(self):
         self.close()
         w = write_sentence()
+        w.show()
+        w.exec_()
+
+    def famous_saying_text(self):
+        self.close()
+        get_text = random_text()
+        make_font_image_compare("bahnschrift", get_text)
+        make_font_image("bahnschrift", get_text)
+        w = CWidget()
+        w.show()
+        w.exec_()
+
+
+form_write_sentence = uic.loadUiType("write_sentence.ui")[0]
+class write_famous_sentence(QDialog,form_write_sentence):
+
+    def __init__(self):
+        super().__init__()
+        self.initUI()
+        self.show()
+
+    def initUI(self):
+        self.setupUi(self)
+        self.ok.clicked.connect(self.drawing_famous_pad)
+
+
+    def drawing_famous_pad(self):
+        self.close()
+        get_text = random_text()
+        make_font_image_compare("bahnschrift", get_text)
+        make_font_image("bahnschrift", get_text)
+        w = CWidget()
         w.show()
         w.exec_()
 
@@ -888,6 +961,14 @@ class write_sentence(QDialog,form_write_sentence):
         self.setupUi(self)
         self.ok.clicked.connect(self.drawing_pad)
 
+        self.home.clicked.connect(self.backhome)
+
+    def backhome(self):
+        self.close()
+        from ui2 import MyWindow2
+        w = MyWindow2()
+        w.show()
+        w.exec_()
 
     def drawing_pad(self):
         self.close()
@@ -912,12 +993,14 @@ class choose_feedback_level(QDialog,choose_feedback_level):
     def feedback_high(self):
         global type
         if (type == "alphabet"):
+            self.close()
             alphabet_feedback("상")
             type = "alphabet"
             w = Ui_Dialog()
             w.show()
             w.exec_()
         elif (type == "sentence"):
+            self.close()
             sentence_feedback("상")
             type = "sentence"
             w = Ui_Dialog()
@@ -927,12 +1010,14 @@ class choose_feedback_level(QDialog,choose_feedback_level):
     def feedback_middle(self):
         global type
         if (type == "alphabet"):
+            self.close()
             alphabet_feedback("중")
             type = "alphabet"
             w = Ui_Dialog()
             w.show()
             w.exec_()
         elif (type == "sentence"):
+            self.close()
             sentence_feedback("중")
             type = "sentence"
             w = Ui_Dialog()
@@ -942,12 +1027,14 @@ class choose_feedback_level(QDialog,choose_feedback_level):
     def feedback_low(self):
         global type
         if (type == "alphabet"):
+            self.close()
             alphabet_feedback("하")
             type = "alphabet"
             w = Ui_Dialog()
             w.show()
             w.exec_()
         elif (type == "sentence"):
+            self.close()
             sentence_feedback("하")
             type = "sentence"
             w = Ui_Dialog()
@@ -988,13 +1075,44 @@ class Ui_Dialog(QDialog):
 "font: 14pt \"-다정\";")
         self.pushButton_2.setObjectName("pushButton_2")
         self.pushButton_2.clicked.connect(self.backhome)
+        self.pushButton_3 = QtWidgets.QPushButton(Dialog)
+        self.pushButton_3.setObjectName("pushButton_3")
+        self.pushButton_3.setGeometry(QtCore.QRect(380, 920, 131, 31))
+        self.pushButton_3.setStyleSheet("background:rgba(254, 255, 185,150);\n"
+                                        "font: 14pt \"-다정\";")
+        self.pushButton_3.clicked.connect(self.bb)
         self.retranslateUi(Dialog)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
+    def bb(self):
+        global ban_best_image_connect
+        global feedback_image_alphabet_connect
+        global feedback_image_sentence_connect
+        global type
+        i = 1
+        if (type == "alphabet"):
+            ban_best_image_connect = feedback_image_alphabet_connect
+        elif (type == "sentence"):
+            ban_best_image_connect = feedback_image_sentence_connect
+
+        # while i < k:
+        #     # global type
+        #     ban_best = "bahn_best_image" + str(i) + ".png"
+        #
+        #     if os.path.isfile(ban_best):
+        #         i = i + 1
+        #     else:
+        #         type = "alphabet"
+        #         ban_best_image.save("bahn_best_image" + str(i) + ".png")
+        #
+        #         ban_best_image_connect = "bahn_best_image" + str(i) + ".png"
+        #         break
+
     def backhome(self):
         self.close()
-        #w = MyWindow_2()
-        #w.show()
-        #w.exec_()
+        from ui2 import MyWindow2
+        w = MyWindow2()
+        w.show()
+        w.exec_()
 
     def retranslateUi(self, Dialog):
         _translate = QtCore.QCoreApplication.translate
@@ -1008,6 +1126,7 @@ class Ui_Dialog(QDialog):
                                                          " 유사도에 따른 점수는 5점 만점에 " + str(feedback_score) + "점입니다. \n"
                                                                                                         +sentence_one ))
         self.pushButton_2.setText(_translate("Dialog", "홈으로 돌아가기"))
+        self.pushButton_3.setText(_translate("Dialog", "Best 저장"))
 
 QApplication.setAttribute(Qt.AA_EnableHighDpiScaling, True)
 
@@ -1034,7 +1153,7 @@ class CWidget(QDialog):
         gb.setLayout(box)
 
         # 그룹박스 1 의 라디오 버튼 배치
-        text = ['line', 'Curve', 'Rectange', 'Ellipse']
+        text = ['line', 'Curve','Rectange', 'Ellipse']
         self.radiobtns = []
 
         for i in range(len(text)):
@@ -1077,7 +1196,7 @@ class CWidget(QDialog):
         hbox = QHBoxLayout()
         gb.setLayout(hbox)
 
-        label = QLabel('붓색상')
+        #label = QLabel('붓색상')
         hbox.addWidget(label)
 
         self.brushcolor = QColor(255, 255, 255)
@@ -1109,27 +1228,27 @@ class CWidget(QDialog):
             if (type == "alphabet"):
                 while i < k:
                     # global type
-                    feedback_image_alphabet = "gothic_feedback_alphabet" + str(i) + ".png"
+                    feedback_image_alphabet = "bahn_feedback_alphabet" + str(i) + ".png"
 
                     if os.path.isfile(feedback_image_alphabet):
                         i = i + 1
                     else:
                         type = "alphabet"
-                        img.save("gothic_feedback_alphabet" + str(i) + ".png")
+                        img.save("bahn_feedback_alphabet" + str(i) + ".png")
 
-                        feedback_image_alphabet_connect = "gothic_feedback_alphabet" + str(i) + ".png"
+                        feedback_image_alphabet_connect = "bahn_feedback_alphabet" + str(i) + ".png"
                         break
             elif (type == "sentence"):
                 while i < k:
                     # global type
-                    feedback_image_sentence = "gothic_feedback_sentence" + str(i) + ".png"
+                    feedback_image_sentence = "bahn_feedback_sentence" + str(i) + ".png"
 
                     if os.path.isfile(feedback_image_sentence):
                         i = i + 1
                     else:
                         type = "sentence"
-                        img.save("gothic_feedback_sentence" + str(i) + ".png")
-                        feedback_image_sentence_connect = "gothic_feedback_sentence" + str(i) + ".png"
+                        img.save("bahn_feedback_sentence" + str(i) + ".png")
+                        feedback_image_sentence_connect = "bahn_feedback_sentence" + str(i) + ".png"
                         break
 
         gb = QGroupBox('')
